@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:vendeta/src/actions/index.dart';
 import 'package:vendeta/src/models/index.dart';
+
+FirebaseUser loggedInUser;
 
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   const SearchBar({Key key})
@@ -21,6 +24,13 @@ class _SearchBarState extends State<SearchBar> {
   final TextEditingController _filter = TextEditingController();
   List<String> searchedItems = <String>[];
   bool isSearch = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
 
   void _searchPressed() {
     setState(() {
@@ -29,6 +39,18 @@ class _SearchBarState extends State<SearchBar> {
         _filter.clear();
       }
     });
+  }
+
+  // ignore: avoid_void_async
+  void getCurrentUser() async {
+    try {
+      final FirebaseUser user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   // Widget _buildList() {
@@ -46,7 +68,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
+      titleSpacing: 0,
       title: isSearch
           ? TextField(
               autofocus: true,
@@ -72,11 +94,25 @@ class _SearchBarState extends State<SearchBar> {
                   hintStyle: TextStyle(color: Colors.white),
                   fillColor: Colors.white),
             )
-          : const Text('VendETA'),
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(),
+                const Text('VendETA '),
+                IconButton(
+                  icon: const Icon(Icons.logout),
+                  onPressed: () {
+                    _auth.signOut();
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+            ),
       backgroundColor: Colors.indigo[900],
       leading: IconButton(
         icon: Icon(
-          isSearch ? Icons.close : Icons.search,
+          isSearch ? Icons.arrow_back_rounded : Icons.search,
         ),
         onPressed: _searchPressed,
       ),

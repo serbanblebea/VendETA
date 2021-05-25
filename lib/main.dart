@@ -10,6 +10,9 @@ import 'package:vendeta/src/data/farnell_api.dart';
 import 'package:vendeta/src/epics/app_epics.dart';
 import 'package:vendeta/src/models/index.dart';
 import 'package:vendeta/src/presentation/home_page.dart';
+import 'package:vendeta/src/presentation/login_screen.dart';
+import 'package:vendeta/src/presentation/registration_screen.dart';
+import 'package:vendeta/src/presentation/welcome_screen.dart';
 import 'package:vendeta/src/reducer/reducer.dart';
 
 void main() {
@@ -43,7 +46,13 @@ class VendetaApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
         ),
-        home: const HomePage(),
+        initialRoute: WelcomeScreen.id,
+        routes: <String, WidgetBuilder>{
+          WelcomeScreen.id: (BuildContext context) => WelcomeScreen(),
+          LoginScreen.id: (BuildContext context) => LoginScreen(),
+          RegistrationScreen.id: (BuildContext context) => RegistrationScreen(),
+          HomePage.id: (BuildContext context) => const HomePage(),
+        },
       ),
     );
   }

@@ -17,7 +17,7 @@ class FarnellApi {
   final String _apiKey;
 
   Future<List<Product>> getProducts(int offset, String term) async {
-    final Uri url = Uri.parse('http://api.element14.com//catalog/products').replace(
+    final Uri url = Uri.parse('https://api.element14.com//catalog/products').replace(
       queryParameters: <String, String>{
         'term': 'any:$term',
         'storeInfo.id': 'uk.farnell.com',

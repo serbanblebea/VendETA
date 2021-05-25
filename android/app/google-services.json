@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "721778085045",
+    "project_id": "vendeta-4",
+    "storage_bucket": "vendeta-4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721778085045:android:78d16637b17ed4234942fc",
+        "android_client_info": {
+          "package_name": "serban.blebea.VendETA"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721778085045-4funfvejkj2mrb2hh75b6dk5cbk1oolm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhUXqL8-dpJvV_XDAdYpvWfrKGrBv-JBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721778085045-4funfvejkj2mrb2hh75b6dk5cbk1oolm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

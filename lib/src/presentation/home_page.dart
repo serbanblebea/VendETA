@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
   const HomePage({
     Key key,
   }) : super(key: key);
+  static const String id = 'home_screen';
 
   @override
   _HomePageState createState() => _HomePageState();
